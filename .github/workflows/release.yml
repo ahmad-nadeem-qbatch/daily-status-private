@@ -1,0 +1,22 @@
+name: Release
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Workflow Title"
+        required: true
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNMAE}}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.SECRET_KEY }}
+          script_stop: true
+          script: |
+            pwd
