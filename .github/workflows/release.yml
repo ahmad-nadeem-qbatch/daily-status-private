@@ -1,8 +1,10 @@
 name: Release
 on:
-  push:
-    branches:
-      - "main"
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Workflow Title"
+        required: true
 jobs:
   build:
     name: Build
@@ -12,9 +14,9 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNMAE}}
-          port: ${{ secrets.SECRET_KEY }}
-          key: ${{ secrets.SECRET_KEY }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script_stop: true
           script: |
             pwd
