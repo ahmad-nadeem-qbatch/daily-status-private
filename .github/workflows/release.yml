@@ -13,13 +13,12 @@ jobs:
           - uses: actions/checkout@v3
           - name: testing workflow
             env:
-                PRIVATE_KEY: ${{ secrets.SSH_PRIVATE KEY  }}
+                PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY  }}
                 HOSTNAME : ${{ secrets.HOST  }}
                 USER_NAME : ${{ secrets.USERNAME  }}
-                SSH_PORT : ${{ secrets.PORT }}
             run: |
               echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-              ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} -p ${SSH_PORT} '
+              ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} -p 2025 '
 
                 pwd
               '
