@@ -19,7 +19,7 @@ jobs:
             PORT : ${{ secrets.PORT  }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} -p ${PORT}'
+          ssh -o StrictHostKeyChecking=no -i private_key qbatch@qbatch.ddns.net -p 2025'
 
             pwd
           '
