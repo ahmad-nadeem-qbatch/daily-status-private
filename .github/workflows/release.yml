@@ -10,13 +10,16 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: executing remote ssh commands
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          port: ${{ secrets.PORT }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script_stop: true
-          script: |
+      - uses: actions/checkout@v3
+      - name: Deploy Daily Status
+        env:
+            PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY  }}
+            HOSTNAME : ${{ secrets.HOST  }}
+            USER_NAME : ${{ secrets.USERNAME  }}
+            PORT : ${{ secrets.PORT  }}
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} -p ${PORT}'
+
             pwd
+          '
