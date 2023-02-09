@@ -16,10 +16,10 @@ jobs:
             PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY  }}
             HOSTNAME : ${{ secrets.HOST  }}
             USER_NAME : ${{ secrets.USERNAME  }}
-            PORT : ${{ secrets.PORT  }}
+            SSH_PORT : ${{ secrets.PORT  }}
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} -p ${PORT}'
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} -p ${SSH_PORT}'
 
             pwd
           '
