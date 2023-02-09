@@ -18,7 +18,8 @@ jobs:
                 USER_NAME : ${{ secrets.USERNAME  }}
             run: |
               echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-              ssh -o StrictHostKeyChecking=no -i private_key ${{ env.USER_NAME }}@${{ env.USER_NAME }} -p 2025 '
+              ssh -o StrictHostKeyChecking=no -i private_key qbatch@qbatch.ddns.net -p 2025 '
 
                 pwd
+                echo "${{ env.USER_NAME }}"
               '
